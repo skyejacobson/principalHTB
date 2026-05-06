@@ -90,5 +90,5 @@ PORT     STATE SERVICE    VERSION
 
 Adding the ip to hosts to searching in the URL via 8080 brings up a website with a login for Principal Internal Platform. We can enumerate further via `fuff`.
 
-Nothing of note comes up besides a 200 on a page called `dashboard`. Attempting to access the page commits an autoredirect to login. Something that can be used later.
+Nothing of note comes up besides a 200 on a page called `dashboard`. Attempting to access the page commits an autoredirect to login -- something that can be used later.
 
