@@ -2,7 +2,7 @@
 Personal writeup of the Principal hack the box machine
 
 Initial nmap scan reveals 2 PoA on the machine
-'''
+```
 ┌──(root㉿kali-linux-2024-2)-[/home/parallels/Documents/Principal]
 └─# nmap -sV -sC 10.129.39.147 
 Starting Nmap 7.98 ( https://nmap.org ) at 2026-04-25 19:59 +0900
@@ -86,4 +86,4 @@ PORT     STATE SERVICE    VERSION
 |     </table>
 |     </body>
 |_    </html>
-'''
+```
