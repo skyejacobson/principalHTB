@@ -94,6 +94,6 @@ Nothing of note comes up besides a 200 on a page called `dashboard`. Attempting 
 
 Taking a closer look at the scan results, we can see the webpage is `X-Powered-By: pac4j-jwt/6.0.3`. Searches with keywords like `cve` and `pac4j-jwt/6.0.3` helps us identify [CVE-2026-29000](https://github.com/alihussainzada/CVE-2026-29000-Python-PoC-pac4j-JWT-AuthenticationBypass-Poc). 
 
-The bug exists within the part of the code that verifies the JWT signatures. It improperly parses PlainJWT (unsigned tokens) as null and executes a logic error. When a user has access to the websites public RSA key it can encrypt a malicious PlainJWT with admin claims; since the bug allows for signature bypass the machine trusts all claims as valid leading to privilege escalation. 
+The bug that the CVE is based on exists within the part of the code that verifies the JWT signatures. It improperly parses PlainJWT (unsigned tokens) as null and executes a logic error. When a user has access to the websites public RSA key it can encrypt a malicious PlainJWT with admin claims -- and since the bug allows for signature bypass -- the machine trusts all claims as valid leading to privilege escalation. 
 
  
