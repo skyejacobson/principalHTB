@@ -92,3 +92,6 @@ Adding the ip to hosts to searching in the URL via 8080 brings up a website with
 
 Nothing of note comes up besides a 200 on a page called `dashboard`. Attempting to access the page commits an autoredirect to login -- something that can be used later.
 
+Taking a closer look at the scan results, we can see the webpage is `X-Powered-By: pac4j-jwt/6.0.3`. Searches with keywords like `cve` and `pac4j-jwt/6.0.3` helps us identify [CVE-2026-29000](https://github.com/alihussainzada/CVE-2026-29000-Python-PoC-pac4j-JWT-AuthenticationBypass-Poc). 
+
+The bug exists within the part of the code that verifies the JWT signatures. It properly 
