@@ -134,3 +134,5 @@ const DASHBOARD_ENDPOINT = '/api/dashboard';
 const USERS_ENDPOINT = '/api/users';
 const SETTINGS_ENDPOINT = '/api/settings';
 ```
+
+We're looking specifically at the line `Public key available at /api/auth/jwks for token verification`. Pulling that page from the 
