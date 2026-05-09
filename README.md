@@ -154,3 +154,8 @@ Use it as:
 Authorization: Bearer eyJhbGciOiAiUlNBLU9BRVAtMjU2IiwgImVuYyI6ICJBMTI4R0NNIiwgImN0eSI6ICJKV1QiLCAia2lkIjogImVuYy1rZXktMSJ9.fjIEHSpUYQjIvzPdCU8z5eV02wBk3a2Va4ahUrGM-qaEN7Sza8XBzulwEbhyNsxcfzNWB-XSOE9C1-FweCY_LMCp9Oj3Ie4gFKKlNNsPQUwlPQLcGzgfHCJaVamADm428ZPvtZtxkaGswjbRHB2iQ_2EdVDoWw1VMUWxaCxNlTcygQ9wRa_ub4Nzpk_lddK7xptva8Yf-aGmoWsIJ6BwLXucWBwU6WqqX5SpgbolQ8_Z2iQDf14xV9eRR4yQqi_P6O-SwmWnboE2Q7rJbCR2kzGgC8eqRFBfeTbhXVf9z2SG52cHNHz2agMi2dsSxuMU4xL0rsLU7yZtYrMSKFDadg.7uBx2RdgyeCRRSIZ.30q2z8_ntup65byWeQz929nXpgpJgWxXoD_B34mbSb5ks4NUOrsymgpxOh7eS6Vm2Sq6GtXJjVF8EdaFqolMnVnssD_tIMDHwlWYfMQ1dN9b59yqJeOqekFgbRgiqeFnd8QX_saV9VjNFXONPkFLuW1Ru6RaQPRFmW5S3dYRyVR4OAMxM2PUBKf3hkighydYVuoPfRlvWll3JDf6mUWTRqAarTlUxrLsd5ib8cZWC-eysNZtKA.o7iHSJGqcS4hGctcJEQJiw
 ```
 
+Now that we've created the malicious JWE token we can use it as an authorization for the login page. Saving the token into session storage then labeling it - we can go to `/dashboard` and get access to the login dashboard of the page and enumerate from there.
+
+Under the `Security` tab we can find a list of encryption data with what seems to be a plaintext password. We can save that and then enumerate further.
+
+Moving towards the `User Management` tab we can find a list of accounts that have username, name, IT role, department, status, and notes. All useful information 
