@@ -158,4 +158,4 @@ Now that we've created the malicious JWE token we can use it as an authorization
 
 Under the `Security` tab we can find a list of encryption data with what seems to be a plaintext password. We can save that and then enumerate further.
 
-Moving towards the `User Management` tab we can find a list of accounts that have username, name, IT role, department, status, and notes. All useful information 
+Moving towards the `User Management` tab we can find a list of accounts that have username, name, IT role, department, status, and notes. We can cross-check the names of the accounts with the context of the passsword to determine that the user `svc-deploy` would be the correct one to login to.
