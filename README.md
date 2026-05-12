@@ -159,3 +159,30 @@ Now that we've created the malicious JWE token we can use it as an authorization
 Under the `Security` tab we can find a list of encryption data with what seems to be a plaintext password. We can save that and then enumerate further.
 
 Moving towards the `User Management` tab we can find a list of accounts that have username, name, IT role, department, status, and notes. We can cross-check the names of the accounts with the context of the passsword to determine that the user `svc-deploy` would be the correct one to login to.
+
+```
+┌──(root㉿kali-linux-2024-2)-[/home/parallels/Documents/Principal]
+└─# ssh svc-deploy@10.129.50.104
+svc-deploy@10.129.50.104's password: 
+Welcome to Ubuntu 24.04.4 LTS (GNU/Linux 6.8.0-101-generic x86_64)
+
+ * Documentation:  https://help.ubuntu.com
+ * Management:     https://landscape.canonical.com
+ * Support:        https://ubuntu.com/pro
+
+This system has been minimized by removing packages and content that are
+not required on a system that users do not log into.
+
+To restore this content, you can run the 'unminimize' command.
+svc-deploy@principal:~$
+```
+
+Success. We now have access to the backend and can locate the user flag.
+
+```
+svc-deploy@principal:~$ ls
+user.txt
+svc-deploy@principal:~$ cat user.txt
+[USER_FLAG_HERE]
+```
+
