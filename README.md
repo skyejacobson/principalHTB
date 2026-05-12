@@ -207,3 +207,32 @@ svc-deploy@principal:/$ find / -group deployers -readable 2>/dev/null
 /opt/principal/ssh/ca
 ```
 
+This is very useful information. These files are the SSH Certifcate Authority (CA) files. These are a goldmine for privilege escalation. 
+
+```
+svc-deploy@principal:/$ cd /opt/principal/ssh
+svc-deploy@principal:/opt/principal/ssh$ ls
+README.txt  ca  ca.pub
+svc-deploy@principal:/opt/principal/ssh$ cat README.txt
+CA keypair for SSH certificate automation.
+This CA is trusted by sshd for certificate-based authentication.
+Use deploy.sh to issue short-lived certificates for service accounts.
+Key details:
+  Algorithm: RSA 4096-bit
+  Created: 2025-11-15
+  Purpose: Automated deployment authentication
+```
+
+We can attempt to search for `deploy.sh` but it wont turn up anything relevant. We can instead check if the master CA key is readable and if so - see how it's configured under the `sshd_config.d/60-principal.conf` file.
+
+Once determining that the `ca.pub` master key is readable by the `deployers` group, we can now see how the certificates are configured via the `.conf` file.
+
+```
+svc-deploy@principal:/opt/principal/ssh$ cat /etc/ssh/sshd_config.d/60-principal.conf
+# Principal machine SSH configuration
+PubkeyAuthentication yes
+PasswordAuthentication yes
+PermitRootLogin prohibit-password
+TrustedUserCAKeys /opt/principal/ssh/ca.pub
+```
+
