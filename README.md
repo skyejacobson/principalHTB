@@ -197,7 +197,7 @@ svc-deploy@principal:~$ sudo -l
 Sorry, user svc-deploy may not run sudo on principal.
 ```
 
-No luck with `sudo -l` but we can see that `svc-deploy` is apart of the group `1001(deployers)`. With extra tagged groups there is likely a misconfigured or unrestricted file that could be manipulated to gain root. We can search for readable files specifically tailored to `gid=1001(deployers)`.
+No luck with `sudo -l` but we can see that `svc-deploy` is apart of the group `1001(deployers)`. With extra tagged groups there is likely a misconfigured or unrestricted file that could be manipulated to gain root. We can search for readable files specifically tailored to `groups=1001(deployers)`.
 
 ```
 svc-deploy@principal:/$ find / -group deployers -readable 2>/dev/null
