@@ -237,7 +237,7 @@ TrustedUserCAKeys /opt/principal/ssh/ca.pub
 ```
 
 This is great. Breaking it down we have 2 critical pieces of information:
-1. `TrustedUserCAKeys /opt/principal/ssh/ca.pub` tells us that any key generated and signed using the master certificate is automatically trusted. Allowing for us to sign any given 
+1. `TrustedUserCAKeys /opt/principal/ssh/ca.pub` tells us that any key generated and signed using the master certificate is automatically trusted. Allowing for us to sign any given/generated key
 2. `PermitRootLogin prohibit-password` tells us that root login is possible but only via certificate - "prohbiting" a password.
 
 Being able to read the master key and understanding its configuration we can generate a public/private rsa key pair.
