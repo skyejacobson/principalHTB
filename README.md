@@ -137,7 +137,7 @@ const SETTINGS_ENDPOINT = '/api/settings';
 
 We're looking specifically at the line `Public key available at /api/auth/jwks for token verification`. Pulling that page gives us the websites public RSA key. We can use that to our advantage now that we have the key.
 
-Reading into the CVE we found earlier tells us we have evrything we need to generate the malicious token and bypass the lgoin.
+Reading into the CVE we found earlier tells us we have evrything we need to generate the malicious token and bypass the login.
 
 ```
 ┌──(root㉿kali-linux-2024-2)-[/home/parallels/Documents/Principal/CVE-2026-29000-Python-PoC-pac4j-JWT-AuthenticationBypass-Poc]
