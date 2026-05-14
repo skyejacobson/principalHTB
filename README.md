@@ -238,3 +238,29 @@ TrustedUserCAKeys /opt/principal/ssh/ca.pub
 
 This is great. Breaking it down we have 2 critical pieces of information:
 1. `TrustedUserCAKeys /opt/principal/ssh/ca.pub` tells us that any key generated and signed using the master certificate is automatically trusted. Allowing for us to sign any given 
+2. `PermitRootLogin prohibit-password` tells us that root login is possible but only via certificate - "prohbiting" a password.
+
+Being able to read the master key and understanding its configuration we can generate a public/private rsa key pair.
+
+```
+svc-deploy@principal:/opt/principal$ cd /tmp
+svc-deploy@principal:/tmp$ ssh-keygen -t rsa -f mykey -N ""
+Generating public/private rsa key pair.
+Your identification has been saved in mykey
+Your public key has been saved in mykey.pub
+The key fingerprint is:
+SHA256:PtnTsUx5UvUefBwxYOkHG5EJ/uSmB8anOV+FBiUXyRk svc-deploy@principal
+The key's randomart image is:
++---[RSA 3072]----+
+|           .o=EOo|
+|          . .X=o+|
+|           .o.=o+|
+|          . +* +o|
+|        S  +=== o|
+|       . o.+B*  .|
+|        + o=+. . |
+|         . .+ .  |
+|             .   |
++----[SHA256]-----+
+```
+
