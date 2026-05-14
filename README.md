@@ -271,7 +271,7 @@ svc-deploy@principal:/tmp$ ssh-keygen -s /opt/principal/ssh/ca -I "root-access" 
 Signed user key /tmp/mykey-cert.pub: id "root-access" serial 0 for root valid forever
 ```
 
-Lastly we need to then re-establish a ssh connection using our newly generated root-access key.
+Lastly, we need to then re-establish a ssh connection using our newly generated root-access key.
 
 ```
 svc-deploy@principal:/tmp$ ssh -i /tmp/mykey -i /tmp/mykey-cert.pub root@localhost
